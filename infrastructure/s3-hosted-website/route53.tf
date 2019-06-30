@@ -1,10 +1,15 @@
+variable "hosted-zone" {
+  default = "axetay.com"
+}
+
+
 data "aws_route53_zone" "domain-hosted-zone" {
-  name = "${var.top-level-domain}"
+  name = "${var.hosted-zone}"
 }
 
 resource "aws_route53_record" "www" {
   zone_id = "${data.aws_route53_zone.domain-hosted-zone.zone_id}"
-  name    = "${data.template_file.fq-name.rendered}"
+  name    = "${var.bucket-domain-name}"
   type    = "A"
 
   alias {
