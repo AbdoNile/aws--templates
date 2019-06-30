@@ -1,10 +1,12 @@
+variable  "public1_subnet_cidr"  {}
+variable  "public2_subnet_cidr"  {}
 
 resource "aws_subnet" "public1" {
   availability_zone = "${var.first_az}"
   vpc_id            = "${aws_vpc.vpc.id}"
   cidr_block        = "${var.public1_subnet_cidr}"
   tags {
-    Name = "${var.appName} Web Servers Subnet"
+    Name = "${var.network_name} Public Subnet 1"
   }
   
 }
@@ -14,7 +16,7 @@ resource "aws_subnet" "public2" {
   vpc_id            = "${aws_vpc.vpc.id}"
   cidr_block        = "${var.public2_subnet_cidr}"
   tags {
-    Name = "${var.appName} Web Servers Subnet"
+    Name = "${var.network_name}  Public Subnet 2"
   }
 }
 

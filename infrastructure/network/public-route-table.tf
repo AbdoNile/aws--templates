@@ -7,3 +7,8 @@ resource "aws_route" "public-traffic-to-internetgrateway" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.InternetGateway.id}"
 }
+
+
+resource "aws_eip" "nat-eip" {
+  
+}
