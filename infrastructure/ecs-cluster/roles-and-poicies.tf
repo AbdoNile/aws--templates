@@ -1,24 +1,12 @@
 resource "aws_iam_role" "ecsInstanceRole" {
   name = "EcsInstanceRole"
-
-  assume_role_policy = <<EOF
-{
-"Version": "2012-10-17",
-"Statement": [
-    {
-    "Action": "sts:AssumeRole",
-    "Principal": {
-        "Service": "ec2.amazonaws.com"
-    },
-    "Effect": "Allow",
-    "Sid": ""
-    }
-]
-}
-EOF
+  assume_role_policy = "${data.template_file.instance-iam-role.rendered}"
 }
 
 
+data "template_file" "instance-iam-role" {
+  template = "${file("ecs-instance-iam-role.json")}"
+}
 
 resource "aws_iam_role_policy_attachment" "attachEC2Policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
