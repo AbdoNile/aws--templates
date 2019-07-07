@@ -5,3 +5,5 @@ google-client-secret = "XsbdNIWzEMXe7GXRrEGXHJxh"
 
 callback-urls =  ["https://test.axetay.com/login-call-back"
  , "http://localhost:3000/login-call-back"]
+
+ login-custom-domain = "login.axetay.com"

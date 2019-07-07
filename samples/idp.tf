@@ -8,6 +8,7 @@ variable "callback-urls" {
 
 variable "google-client-id" {}
 variable "google-client-secret" {}
+variable "login-custom-domain" {}
 
 module "idp" {
   source               = "../modules/cognito-google-pool"
@@ -15,4 +16,6 @@ module "idp" {
   google-client-id     = "${var.google-client-id}"
   pool-name            = "${var.pool-name}"
   callback-urls        = "${var.callback-urls}"
+  login-custom-domain  = "${var.login-custom-domain}"
+  ssl-certificate-arn   = "${module.certificate.arn}"
 }
