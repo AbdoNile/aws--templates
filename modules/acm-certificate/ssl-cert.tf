@@ -2,6 +2,12 @@ variable "ssl-domain-root" {
   
 }
 
+
+data "aws_route53_zone" "domain-hosted-zone" {
+  name = "${var.ssl-domain-root}"
+}
+
+
 resource "aws_acm_certificate" "certificate" {
   domain_name       = "*.${var.ssl-domain-root}"
   validation_method = "DNS"
