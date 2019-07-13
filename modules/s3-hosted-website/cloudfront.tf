@@ -1,3 +1,6 @@
+variable "ssl-certificate-arn" {
+}
+
 resource "aws_cloudfront_distribution" "web_distribution" {
   // origin is where CloudFront gets its content from.
   origin {
@@ -45,7 +48,7 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${aws_acm_certificate.certificate.arn}"
+    acm_certificate_arn = "${var.ssl-certificate-arn}"
     ssl_support_method  = "sni-only"
   }
 }
