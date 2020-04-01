@@ -1,6 +1,7 @@
+variable "hosted-zone" {}
 
 data "aws_route53_zone" "domain-hosted-zone" {
-  name = "${var.ssl-domain-root}"
+  name = "${var.hosted-zone}"
 }
 
 resource "aws_acm_certificate_validation" "cert" {
